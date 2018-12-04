@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions, JwtHelperService } from '@auth0/angular-jwt';
+import { TokenInterceptor } from './service/token-inceptor.service';
 
 export function tokenGetter() {
   return localStorage.getItem('currentUser');
@@ -32,6 +33,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost'],
+      
       }
     })
 
@@ -40,7 +42,13 @@ export function tokenGetter() {
     
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

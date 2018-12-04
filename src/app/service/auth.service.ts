@@ -11,12 +11,17 @@ import {map} from 'rxjs/operators';
 export class AuthService {
   constructor(private http: HttpClient, private jwtHelper:JwtHelperService) {}
 
+  private token:string
+  public getToken(): string{
+    return this.token
+  }
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('currentUser');
     // Check whether the token is expired and return
     // true or false
-
-    return !this.jwtHelper.isTokenExpired(token);
+    
+    const isTokenExpired :boolean = this.jwtHelper.isTokenExpired(token)
+    return !isTokenExpired;
   }
 
 
@@ -28,6 +33,7 @@ export class AuthService {
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user
             // logged in between page refreshes
+            this.token = user.token
             localStorage.setItem('currentUser',user.token);
           }
 
