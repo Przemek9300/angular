@@ -1,0 +1,17 @@
+<form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">  
+    <table>  
+        <tr>  
+            <td>  
+                <mat-form-field class="demo-full-width">  
+                    <input formControlName="name" matInput placeholder="Podaj nazwe playlisty">  
+                </mat-form-field>  
+            </td>  
+        </tr>  
+        <tr>  
+            <td>  
+                    <input type="submit"  placeholder="Utwórz">  
+            </td>  
+        </tr>  
+
+    </table>  
+</form>  

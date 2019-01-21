@@ -1,0 +1,29 @@
+<mat-card class="dashboard-card">
+  <mat-card-header>
+    <mat-card-title>
+      Player
+      <h1>{{song.title|uppercase}}</h1>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item>Expand</button>
+        <button mat-menu-item>Remove</button>
+      </mat-menu>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <img mat-card-image src="https://f4.bcbits.com/img/a2939269798_16.jpg" alt="song.title">
+  </mat-card-content>
+    <mat-card-actions class="dashboard-card-content">
+      
+      <button (click)="prev()" mat-button> <i class="material-icons">
+          fast_rewind </i> </button>
+      <button mat-button *ngIf="playNow" (click)="play()"> <i class="material-icons">
+          play_arrow
+        </i></button>
+        <button mat-button *ngIf="!playNow" (click)="play()"> <i class="material-icons">
+            stop
+          </i></button>
+      <button mat-button (click)="next()"> <i class="material-icons">
+          fast_forward
+        </i></button>
+    </mat-card-actions>
+</mat-card>

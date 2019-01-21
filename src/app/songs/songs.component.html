@@ -1,0 +1,44 @@
+
+<mat-form-field  [formGroup]='searchForm'>
+    <input type="text" matInput formControlName="searchInput" placeholder="SZUKAJ UTWORU">
+  </mat-form-field>
+
+  <table>
+      <thead>
+        <th>Pos.</th>
+
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Duration</th>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of songs; let i = index">
+            <td>{{i}}</td>
+
+          <td>{{song.title | uppercase}}</td>
+          <td>{{song.genre | uppercase}}</td>
+          <td>{{song.duration}}</td>
+          <td>
+              <mat-menu #rootMenu="matMenu">
+                  <button mat-menu-item [matMenuTriggerFor]="subMenu">Dodaj do playlisty</button>
+                  <button mat-menu-item>Usuń</button>
+                </mat-menu>
+                
+                <mat-menu #subMenu="matMenu">
+                    <button (click)="addSongToPlaylist(p.slug,song.slug)" *ngFor="let p of playlists" mat-menu-item>{{p.name | uppercase}}</button>
+
+                </mat-menu>
+                
+                <button mat-icon-button [matMenuTriggerFor]="rootMenu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+
+          </td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+   

@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const value = this.loginForm.value;
-
+    console.log({value})
     if (value.email && value.password) {
-      this.apiService.login(value.email, value.password).subscribe(()=>this.router.navigateByUrl('/'))
+      this.apiService.login(value.email, value.password).subscribe(()=>this.router.navigateByUrl('/home'))
     }
   }
 }

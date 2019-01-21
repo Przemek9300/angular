@@ -1,0 +1,30 @@
+<form [formGroup]='signupForm' (ngSubmit)='onSubmit()' class=" wrapper">
+
+  <div class="form-group">
+    <label for="firstname">firstname</label>
+    <input formControlName='firstname' type="text" name="firstname">
+  </div>
+  <div class="form-group">
+    <label for="lastname">lastname</label>
+    <input formControlName='lastname' type="text" name="lastname">
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input formControlName='email' type="email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="password">password</label>
+    <input formControlName='password' type="password" name="password">
+
+  </div>
+  <div class="form-group">
+    <label for="password">retype password</label>
+    <input formControlName='password2' type="password" name="password2">
+
+  </div>
+
+  <div class="form-group">
+    <label>submit</label>
+    <input type="submit" value="SignUp">
+  </div>
+</form>

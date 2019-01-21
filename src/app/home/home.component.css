@@ -1,0 +1,39 @@
+footer{
+    position: fixed;
+    bottom: 0;
+    background: black;
+    color: white;
+    width: 100%
+}
+.playlist{
+    max-width: 200px;
+
+}
+.container{
+    background: rgb(67, 186, 255)
+}
+img{
+  margin-left:  35px;
+}
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  font-size: 24px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}

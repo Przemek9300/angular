@@ -1,0 +1,71 @@
+<div class="container">
+        <button (click)="loggout()" mat-menu-item>WYLOGUJ</button>
+        <mat-grid-list cols="4" rowHeight="350px">
+
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+           <app-player></app-player>
+        </mat-grid-tile>
+        <mat-grid-tile *ngFor="let card of playlists; let i = index " [colspan]="1" [rowspan]="1">
+                <mat-card class="dashboard-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Playlista : {{card.name | uppercase}}
+                            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                                <button mat-menu-item>Expand</button>
+                                <button (click)="removePlaylist(card)" mat-menu-item>Remove</button>
+                            </mat-menu>
+                        </mat-card-title>
+    
+    
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content" class="playlist">
+                        <p>ILOŚĆ UTWORÓW:{{card.song.length}}</p>
+                        <img mat-card-image src="https://image.flaticon.com/icons/svg/26/26805.svg" alt="" srcset="">
+                    </mat-card-content>
+                    <mat-card-actions>
+                            <button mat-button (click)="setupPlaylist(card)"> <i class="material-icons">
+                                    play_arrow
+                                </i></button>
+                    </mat-card-actions>
+                </mat-card>
+    
+            </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        Szukaj Utworu
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <app-songs (messageEvent)="addSongToPlaylist($event)"></app-songs>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-card class="dashboard-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Utwórz Playliste
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content">
+                        <app-playlist-form (messageEvent)="addPlaylist($event)">  </app-playlist-form>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+
+
+
+
+    </mat-grid-list>
+
+
+    <!-- <footer>
+    </footer> -->
+</div>
