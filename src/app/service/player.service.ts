@@ -21,6 +21,10 @@ export class PlayerService {
   getSong(){
     if(this.playlist)
     return this.playlist.song[this.i%this.playlist.song.length]
+    else{
+      return <Song>{title:"", duration:0,genre:"", picture:"http://pulandocerca.com.br/templates/fragments/img/ic-album-empty.png"
+    }
+    }
   }
   nextSong(){
     

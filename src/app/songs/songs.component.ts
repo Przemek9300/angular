@@ -5,6 +5,7 @@ import {debounceTime, switchMap} from 'rxjs/operators';
 import {Song} from '../model/Song';
 import {ApiServiceService} from '../service/api-service.service';
 import { Playlist } from '../model/Playlist';
+import { PlayerService } from '../service/player.service';
 
 @Component({
   selector: 'app-songs',
@@ -21,10 +22,11 @@ export class SongsComponent implements OnInit {
   songs: Song[]
   searchForm: FormGroup
   apiservice: ApiServiceService
-  constructor(apiservice: ApiServiceService, private fb: FormBuilder) {
+  constructor(apiservice: ApiServiceService, private fb: FormBuilder,private playerService:PlayerService) {
     this.apiservice = apiservice;
   }
   ngOnInit() {
+    
     this.apiservice.getPlayList().subscribe(y=>this.playlists=y,(err)=>console.log(err))
     this.searchForm =
         this.fb.group({searchInput: new FormControl('')}) 
@@ -41,6 +43,7 @@ export class SongsComponent implements OnInit {
 
                 this.apiservice.getAllSongs()
             .subscribe(x => this.songs = x)
+            this.playerService.notifyObservable$.subscribe(x=>this.apiservice.getPlayList().subscribe(y=>this.playlists=y,(err)=>console.log(err)))
   }
   addSongToPlaylist(playlistSlug:string,songSlug:string){
     this.apiservice.addSongToPlaylist(playlistSlug,songSlug).subscribe(x=>console.log(x))

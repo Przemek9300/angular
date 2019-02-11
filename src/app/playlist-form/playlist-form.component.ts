@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiServiceService } from '../service/api-service.service';
+import { PlayerService } from '../service/player.service';
 
 @Component({
   selector: 'app-playlist-form',
@@ -9,7 +10,7 @@ import { ApiServiceService } from '../service/api-service.service';
 })
 export class PlaylistFormComponent implements OnInit {
 
-  constructor(private apiService:ApiServiceService) { }
+  constructor(private apiService:ApiServiceService,private playerService:PlayerService) { }
   @Output() messageEvent = new EventEmitter<string>();
 
 
@@ -29,6 +30,8 @@ export class PlaylistFormComponent implements OnInit {
   onSubmit(){
     const value = this.playlistForm.value;
     this.apiService.creataPlaylist(value.name).subscribe(x=>this.sendMessage())
+    this.playerService.notifyAll()
+
   }
 
 }

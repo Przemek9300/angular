@@ -19,7 +19,7 @@ export class PlayerComponent implements OnInit {
      this.playNow=true;
      this.song = this.playerService.getSong()
      this.playerService.notifyObservable$.subscribe(x=>this.song = this.playerService.getSong())
-     
+    
   }
 
   play(){

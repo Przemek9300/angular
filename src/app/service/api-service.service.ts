@@ -20,15 +20,15 @@ import {Song} from '../model/Song'
       }))
       } public getPlayList(): Observable<Playlist[]> {
         return this.http.get<Playlist []>('http://localhost:8080/playlist').pipe(
-          map((x)=>x.map((y)=><Playlist>{name:y.name,picture:y.picture,song:y.song.map(c=><Song>{title:c.title,genre:c.genre } ), slug:y.slug} ))
+          map((x)=>x.map((y)=><Playlist>{name:y.name,picture:y.picture,song:y.song.map(c=><Song>{title:c.title,genre:c.genre,picture:c.picture,duration:c.duration } ), slug:y.slug} ))
         )
       } public getAllSongs(): Observable<Song[]> {
         return this.http.get<Song []>('http://localhost:8080/songs').pipe(
-          map((x)=>x.map((y)=><Song>{title:y.title,genre:y.genre,duration:y.duration,slug:y.slug, show :false} ))
+          map((x)=>x.map((y)=><Song>{title:y.title,genre:y.genre,duration:y.duration,slug:y.slug, picture:y.picture,show :false} ))
         )
       } public getSongsQuery(qeury: string): Observable<Song[]> {
         return this.http.get<Song []>('http://localhost:8080/songs',{params:{q:qeury}}).pipe(
-          map((x)=>x.map((y)=><Song>{title:y.title,genre:y.genre,duration:y.duration, slug:y.slug,show:false} ))
+          map((x)=>x.map((y)=><Song>{title:y.title,genre:y.genre,duration:y.duration, slug:y.slug,show:false , picture:y.picture} ))
         )
       } public addSongToPlaylist(playlistSlug: string, songSlug: string) {
         return this.http.post('http://localhost:8080/playlist/'+playlistSlug+'/songs',{slug:songSlug})

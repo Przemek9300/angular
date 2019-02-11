@@ -43,11 +43,6 @@ export class AuthService {
   }
   singUp(username: string, password: string, firstname: string, lastname: string){
     return this.http.post(`http://localhost:8080/signup`, {username, password,firstname,lastname})
-    .pipe(map(response=>{
-      console.log(response)
-      return response;
-
-    }))
   }
   loggout(){
     if(this.isAuthenticated)
